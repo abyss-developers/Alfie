@@ -1,3 +1,5 @@
+import datetime
+import pytz
 import discord
 from discord.ext import commands
 import asyncio
@@ -7,30 +9,65 @@ class admin(commands.Cog):
         self.client = client
 
     @commands.command(aliases=['purge'])
-    @commands.has_role('AbyssDev Team')
+    @commands.has_role('Moderator')
     async def prune(self, ctx, amount=0):
+        log = self.client.get_channel(743972548785602591)
+        dtp = datetime.datetime.now(tz=pytz.UTC).astimezone(pytz.timezone('US/Pacific'))
         if amount <= 0:
-            await ctx.send("> `AbyssBOT:` Missing Arguments: Amount (Usage: !prune/!purge <amount>) (or just ask jason lmao)")
+            await ctx.send("> `AbyssBOT:` Missing Arguments: Amount (Usage: !prune/!purge <amount>)")
         else:
             await ctx.channel.purge(limit=amount + 1)
+        embed = discord.Embed(
+            title = "Prune",
+            description = "@{} pruned {} messages in {}.".format(ctx.author, amount, ctx.channel),
+            colour = discord.Colour.blue()
+        )
+        embed.set_footer(text = (dtp.strftime('%B %d, %Y at %I:%M %p')))
+        embed.set_thumbnail(url='https://media.discordapp.net/attachments/715985032359182422/716537624763826226/Server_Icon_Abyss.png?width=671&height=684')
+        await log.send(embed=embed)
+        print(dtp.strftime('%B %d, %Y at %I:%M %p'))
     
     @commands.command()
-    @commands.has_role('AbyssDev Team')
+    @commands.has_role('Moderator')
     async def kick(self, ctx, member : discord.Member, *, reason=None): # reads that object as a Member object from import discord
+        log = self.client.get_channel(743972548785602591)
+        dtp = datetime.datetime.now(tz=pytz.UTC).astimezone(pytz.timezone('US/Pacific'))
         await member.kick(reason=reason)
         print("{} was kicked for reason: {}".format(member, reason))
         await ctx.send("> `AbyssBOT:` {} was kicked for reason: {}".format(member, reason))
+        embed = discord.Embed(
+            title = "Kick",
+            description = "@{} has kicked {} for {}.".format(ctx.author, member, reason),
+            colour = discord.Colour.blue()
+        )
+        embed.set_footer(text = (dtp.strftime('%B %d, %Y at %I:%M %p')))
+        embed.set_thumbnail(url='https://media.discordapp.net/attachments/715985032359182422/716537624763826226/Server_Icon_Abyss.png?width=671&height=684')
+        await log.send(embed=embed)
+        print(dtp.strftime('%B %d, %Y at %I:%M %p'))
 
     @commands.command()
     @commands.has_role('Admin')
     async def ban(self, ctx, member : discord.Member, *, reason=None): # reads that object as a Member object from import discord
+        log = self.client.get_channel(743972548785602591)
+        dtp = datetime.datetime.now(tz=pytz.UTC).astimezone(pytz.timezone('US/Pacific'))
         await member.ban(reason=reason)
         print("{} was banned for reason: {}".format(member, reason))
         await ctx.send("> `AbyssBOT:` {} was banned for reason: {}".format(member.mention, reason))
+        embed = discord.Embed(
+            title = "Ban",
+            description = "@{} has banned {} for {}.".format(ctx.author, member, reason),
+            colour = discord.Colour.blue()
+        )
+        embed.set_footer(text = (dtp.strftime('%B %d, %Y at %I:%M %p')))
+        embed.set_thumbnail(url='https://media.discordapp.net/attachments/715985032359182422/716537624763826226/Server_Icon_Abyss.png?width=671&height=684')
+        await log.send(embed=embed)
+        print(dtp.strftime('%B %d, %Y at %I:%M %p'))
 
     @commands.command()
     @commands.has_role('Moderator')
     async def unban(self, ctx, *, member):
+        log = self.client.get_channel(743972548785602591)
+        dtp = datetime.datetime.now(tz=pytz.UTC).astimezone(pytz.timezone('US/Pacific'))
         banned_users = await ctx.guild.bans()
         member_name, member_discriminator = member.split('#')
         for ban_entry in banned_users:
@@ -38,12 +75,23 @@ class admin(commands.Cog):
             if (user.name, user.discriminator) == (member_name, member_discriminator):
                 await ctx.guild.unban(user)
                 await ctx.send("> `AbyssBOT:` {} has been unbanned.".format(user.mention))
+                embed = discord.Embed(
+                    title = "Unban",
+                    description = "@{} has banned {}.".format(ctx.author, member),
+                    colour = discord.Colour.blue()
+                )
+                embed.set_footer(text = (dtp.strftime('%B %d, %Y at %I:%M %p')))
+                embed.set_thumbnail(url='https://media.discordapp.net/attachments/715985032359182422/716537624763826226/Server_Icon_Abyss.png?width=671&height=684')
+                await log.send(embed=embed)
+                print(dtp.strftime('%B %d, %Y at %I:%M %p'))
                 return
         await ctx.send("> `AbyssBOT:` Cannot find banned user. (Usage: !unban <username#tag>) (Or once again, just ask Jason.)")
 
     @commands.command()
     @commands.has_role('Moderator')
     async def mute(self, ctx, member : discord.Member, *, time=None): # reads that object as a Member object from import discord
+        log = self.client.get_channel(743972548785602591)
+        dtp = datetime.datetime.now(tz=pytz.UTC).astimezone(pytz.timezone('US/Pacific'))
         print("{} was muted for time: {}m".format(member, time))
         role = discord.utils.get(member.guild.roles, name="Muted")
         await member.add_roles(role)
@@ -55,6 +103,15 @@ class admin(commands.Cog):
         embed.set_footer(text='Love from the AbyssDEV Team')
         embed.set_thumbnail(url='https://media.discordapp.net/attachments/715985032359182422/716537624763826226/Server_Icon_Abyss.png?width=671&height=684')
         await ctx.send(embed=embed)
+        embed = discord.Embed(
+            title = "Mute",
+            description = "@{} has muted {} for {}m.".format(ctx.author, member, time),
+            colour = discord.Colour.blue()
+        )
+        embed.set_footer(text = (dtp.strftime('%B %d, %Y at %I:%M %p')))
+        embed.set_thumbnail(url='https://media.discordapp.net/attachments/715985032359182422/716537624763826226/Server_Icon_Abyss.png?width=671&height=684')
+        await log.send(embed=embed)
+        print(dtp.strftime('%B %d, %Y at %I:%M %p'))
         time = 60 * int(time)
         await asyncio.sleep(time)
         await member.add_roles(role)
@@ -70,11 +127,32 @@ class admin(commands.Cog):
         await member.remove_roles(role)
 
     @commands.command()
-    @commands.has_role('Admin')
-    async def annoy(self, ctx):
-        for i in range(100):
-            await ctx.send("☭")
-            await asyncio.sleep(0.50)
+    @commands.has_role('Moderator')
+    async def unmute(self, ctx, member : discord.Member):
+        log = self.client.get_channel(743972548785602591)
+        dtp = datetime.datetime.now(tz=pytz.UTC).astimezone(pytz.timezone('US/Pacific'))
+        print("{} was unmuted".format(member))
+        role = discord.utils.get(member.guild.roles, name="Muted")
+        await member.remove_roles(role)
+        embed = discord.Embed(
+            title = "Muted",
+            description = "{} was unmuted!".format(member.mention),
+            colour = discord.Colour.blue()
+        )
+        embed.set_footer(text='Love from the AbyssDEV Team')
+        embed.set_thumbnail(url='https://media.discordapp.net/attachments/715985032359182422/716537624763826226/Server_Icon_Abyss.png?width=671&height=684')
+        role = discord.utils.get(member.guild.roles, name="Muted")
+        await ctx.send(embed=embed)
+        embed = discord.Embed(
+            title = "Unmute",
+            description = "@{} has unmuted {}.".format(ctx.author, member),
+            colour = discord.Colour.blue()
+        )
+        embed.set_footer(text = (dtp.strftime('%B %d, %Y at %I:%M %p')))
+        embed.set_thumbnail(url='https://media.discordapp.net/attachments/715985032359182422/716537624763826226/Server_Icon_Abyss.png?width=671&height=684')
+        await log.send(embed=embed)
+        print(dtp.strftime('%B %d, %Y at %I:%M %p'))
+        await member.remove_roles(role)
 
     @commands.command()
     async def control(self, ctx):
