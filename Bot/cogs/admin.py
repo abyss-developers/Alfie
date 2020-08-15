@@ -25,7 +25,6 @@ class admin(commands.Cog):
         embed.set_footer(text = (dtp.strftime('%B %d, %Y at %I:%M %p')))
         embed.set_thumbnail(url='https://media.discordapp.net/attachments/715985032359182422/716537624763826226/Server_Icon_Abyss.png?width=671&height=684')
         await log.send(embed=embed)
-        print(dtp.strftime('%B %d, %Y at %I:%M %p'))
     
     @commands.command()
     @commands.has_role('Moderator')
@@ -43,7 +42,6 @@ class admin(commands.Cog):
         embed.set_footer(text = (dtp.strftime('%B %d, %Y at %I:%M %p')))
         embed.set_thumbnail(url='https://media.discordapp.net/attachments/715985032359182422/716537624763826226/Server_Icon_Abyss.png?width=671&height=684')
         await log.send(embed=embed)
-        print(dtp.strftime('%B %d, %Y at %I:%M %p'))
 
     @commands.command()
     @commands.has_role('Admin')
@@ -61,7 +59,6 @@ class admin(commands.Cog):
         embed.set_footer(text = (dtp.strftime('%B %d, %Y at %I:%M %p')))
         embed.set_thumbnail(url='https://media.discordapp.net/attachments/715985032359182422/716537624763826226/Server_Icon_Abyss.png?width=671&height=684')
         await log.send(embed=embed)
-        print(dtp.strftime('%B %d, %Y at %I:%M %p'))
 
     @commands.command()
     @commands.has_role('Moderator')
@@ -83,7 +80,6 @@ class admin(commands.Cog):
                 embed.set_footer(text = (dtp.strftime('%B %d, %Y at %I:%M %p')))
                 embed.set_thumbnail(url='https://media.discordapp.net/attachments/715985032359182422/716537624763826226/Server_Icon_Abyss.png?width=671&height=684')
                 await log.send(embed=embed)
-                print(dtp.strftime('%B %d, %Y at %I:%M %p'))
                 return
         await ctx.send("> `AbyssBOT:` Cannot find banned user. (Usage: !unban <username#tag>) (Or once again, just ask Jason.)")
 
@@ -111,7 +107,6 @@ class admin(commands.Cog):
         embed.set_footer(text = (dtp.strftime('%B %d, %Y at %I:%M %p')))
         embed.set_thumbnail(url='https://media.discordapp.net/attachments/715985032359182422/716537624763826226/Server_Icon_Abyss.png?width=671&height=684')
         await log.send(embed=embed)
-        print(dtp.strftime('%B %d, %Y at %I:%M %p'))
         time = 60 * int(time)
         await asyncio.sleep(time)
         await member.add_roles(role)
@@ -151,7 +146,6 @@ class admin(commands.Cog):
         embed.set_footer(text = (dtp.strftime('%B %d, %Y at %I:%M %p')))
         embed.set_thumbnail(url='https://media.discordapp.net/attachments/715985032359182422/716537624763826226/Server_Icon_Abyss.png?width=671&height=684')
         await log.send(embed=embed)
-        print(dtp.strftime('%B %d, %Y at %I:%M %p'))
         await member.remove_roles(role)
 
     @commands.command()
