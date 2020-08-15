@@ -15,16 +15,18 @@ class admin(commands.Cog):
         dtp = datetime.datetime.now(tz=pytz.UTC).astimezone(pytz.timezone('US/Pacific'))
         if amount <= 0:
             await ctx.send("> `AbyssBOT:` Missing Arguments: Amount (Usage: !prune/!purge <amount>)")
+        if amount >= 100:
+            await ctx.send("> `AbyssBOT`: Please choose a number lower than 100.")
         else:
             await ctx.channel.purge(limit=amount + 1)
-        embed = discord.Embed(
-            title = "Prune",
-            description = "@{} pruned {} messages in {}.".format(ctx.author, amount, ctx.channel),
-            colour = discord.Colour.blue()
-        )
-        embed.set_footer(text = (dtp.strftime('%B %d, %Y at %I:%M %p')))
-        embed.set_thumbnail(url='https://media.discordapp.net/attachments/715985032359182422/716537624763826226/Server_Icon_Abyss.png?width=671&height=684')
-        await log.send(embed=embed)
+            embed = discord.Embed(
+                title = "Prune",
+                description = "@{} pruned {} messages in {}.".format(ctx.author, amount, ctx.channel),
+                colour = discord.Colour.blue()
+            )
+            embed.set_footer(text = (dtp.strftime('%B %d, %Y at %I:%M %p')))
+            embed.set_thumbnail(url='https://media.discordapp.net/attachments/715985032359182422/716537624763826226/Server_Icon_Abyss.png?width=671&height=684')
+            await log.send(embed=embed)
     
     @commands.command()
     @commands.has_any_role('Moderator', 'Admin')
