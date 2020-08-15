@@ -9,7 +9,7 @@ class admin(commands.Cog):
         self.client = client
 
     @commands.command(aliases=['purge'])
-    @commands.has_role('Moderator')
+    @commands.has_any_role('Moderator', 'Admin')
     async def prune(self, ctx, amount=0):
         log = self.client.get_channel(743972548785602591)
         dtp = datetime.datetime.now(tz=pytz.UTC).astimezone(pytz.timezone('US/Pacific'))
@@ -27,7 +27,7 @@ class admin(commands.Cog):
         await log.send(embed=embed)
     
     @commands.command()
-    @commands.has_role('Moderator')
+    @commands.has_any_role('Moderator', 'Admin')
     async def kick(self, ctx, member : discord.Member, *, reason=None): # reads that object as a Member object from import discord
         log = self.client.get_channel(743972548785602591)
         dtp = datetime.datetime.now(tz=pytz.UTC).astimezone(pytz.timezone('US/Pacific'))
@@ -61,7 +61,7 @@ class admin(commands.Cog):
         await log.send(embed=embed)
 
     @commands.command()
-    @commands.has_role('Moderator')
+    @commands.has_any_role('Moderator', 'Admin')
     async def unban(self, ctx, *, member):
         log = self.client.get_channel(743972548785602591)
         dtp = datetime.datetime.now(tz=pytz.UTC).astimezone(pytz.timezone('US/Pacific'))
@@ -84,7 +84,7 @@ class admin(commands.Cog):
         await ctx.send("> `AbyssBOT:` Cannot find banned user. (Usage: !unban <username#tag>) (Or once again, just ask Jason.)")
 
     @commands.command()
-    @commands.has_role('Moderator')
+    @commands.has_any_role('Moderator', 'Admin')
     async def mute(self, ctx, member : discord.Member, *, time=None): # reads that object as a Member object from import discord
         log = self.client.get_channel(743972548785602591)
         dtp = datetime.datetime.now(tz=pytz.UTC).astimezone(pytz.timezone('US/Pacific'))
@@ -122,7 +122,7 @@ class admin(commands.Cog):
         await member.remove_roles(role)
 
     @commands.command()
-    @commands.has_role('Moderator')
+    @commands.has_any_role('Moderator', 'Admin')
     async def unmute(self, ctx, member : discord.Member):
         log = self.client.get_channel(743972548785602591)
         dtp = datetime.datetime.now(tz=pytz.UTC).astimezone(pytz.timezone('US/Pacific'))
@@ -159,7 +159,7 @@ class admin(commands.Cog):
             await ctx.send(x)
 
     @commands.command()
-    @commands.has_role('Moderator')
+    @commands.has_any_role('Moderator', 'Admin')
     async def shutdown(self, ctx, *, query=""):
         if query == "cancel":
             return
