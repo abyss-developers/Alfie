@@ -39,7 +39,7 @@ class admin(commands.Cog):
         embed = discord.Embed(
             title = "Kick",
             description = "@{} has kicked {} for {}.".format(ctx.author, member, reason),
-            colour = discord.Colour.blue()
+            colour = discord.Colour.orange()
         )
         embed.set_footer(text = (dtp.strftime('%B %d, %Y at %I:%M %p')))
         embed.set_thumbnail(url='https://media.discordapp.net/attachments/715985032359182422/716537624763826226/Server_Icon_Abyss.png?width=671&height=684')
@@ -56,7 +56,7 @@ class admin(commands.Cog):
         embed = discord.Embed(
             title = "Ban",
             description = "@{} has banned {} for {}.".format(ctx.author, member, reason),
-            colour = discord.Colour.blue()
+            colour = discord.Colour.red()
         )
         embed.set_footer(text = (dtp.strftime('%B %d, %Y at %I:%M %p')))
         embed.set_thumbnail(url='https://media.discordapp.net/attachments/715985032359182422/716537624763826226/Server_Icon_Abyss.png?width=671&height=684')
@@ -76,8 +76,8 @@ class admin(commands.Cog):
                 await ctx.send("> `AbyssBOT:` {} has been unbanned.".format(user.mention))
                 embed = discord.Embed(
                     title = "Unban",
-                    description = "@{} has banned {}.".format(ctx.author, member),
-                    colour = discord.Colour.blue()
+                    description = "@{} has unbanned {}.".format(ctx.author, member),
+                    colour = discord.Colour.red()
                 )
                 embed.set_footer(text = (dtp.strftime('%B %d, %Y at %I:%M %p')))
                 embed.set_thumbnail(url='https://media.discordapp.net/attachments/715985032359182422/716537624763826226/Server_Icon_Abyss.png?width=671&height=684')
@@ -96,7 +96,7 @@ class admin(commands.Cog):
         embed = discord.Embed(
             title = "Muted",
             description = "{} was muted for {}m.".format(member.mention, time),
-            colour = discord.Colour.blue()
+            colour = discord.Colour.purple()
         )
         embed.set_footer(text='Love from the AbyssDEV Team')
         embed.set_thumbnail(url='https://media.discordapp.net/attachments/715985032359182422/716537624763826226/Server_Icon_Abyss.png?width=671&height=684')
@@ -104,7 +104,7 @@ class admin(commands.Cog):
         embed = discord.Embed(
             title = "Mute",
             description = "@{} has muted {} for {}m.".format(ctx.author, member, time),
-            colour = discord.Colour.blue()
+            colour = discord.Colour.purple()
         )
         embed.set_footer(text = (dtp.strftime('%B %d, %Y at %I:%M %p')))
         embed.set_thumbnail(url='https://media.discordapp.net/attachments/715985032359182422/716537624763826226/Server_Icon_Abyss.png?width=671&height=684')
@@ -115,7 +115,7 @@ class admin(commands.Cog):
         embed = discord.Embed(
             title = "Muted",
             description = "{} was unmuted!".format(member.mention),
-            colour = discord.Colour.blue()
+            colour = discord.Colour.purple()
         )
         embed.set_footer(text='Love from the AbyssDEV Team')
         embed.set_thumbnail(url='https://media.discordapp.net/attachments/715985032359182422/716537624763826226/Server_Icon_Abyss.png?width=671&height=684')
@@ -134,7 +134,7 @@ class admin(commands.Cog):
         embed = discord.Embed(
             title = "Muted",
             description = "{} was unmuted!".format(member.mention),
-            colour = discord.Colour.blue()
+            colour = discord.Colour.purple()
         )
         embed.set_footer(text='Love from the AbyssDEV Team')
         embed.set_thumbnail(url='https://media.discordapp.net/attachments/715985032359182422/716537624763826226/Server_Icon_Abyss.png?width=671&height=684')
@@ -143,7 +143,7 @@ class admin(commands.Cog):
         embed = discord.Embed(
             title = "Unmute",
             description = "@{} has unmuted {}.".format(ctx.author, member),
-            colour = discord.Colour.blue()
+            colour = discord.Colour.purple()
         )
         embed.set_footer(text = (dtp.strftime('%B %d, %Y at %I:%M %p')))
         embed.set_thumbnail(url='https://media.discordapp.net/attachments/715985032359182422/716537624763826226/Server_Icon_Abyss.png?width=671&height=684')
