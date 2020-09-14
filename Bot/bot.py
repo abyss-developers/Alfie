@@ -12,7 +12,7 @@ statuses = cycle([
     'My prefix is !. Try "!help"',
     'You got this!',
     "Follow @jaqarx on Instagram!",
-    "Follow @acren.io on Instagram!",
+    "Follow @akryn.io on Instagram!",
     "Follow @_sagastine_ on Instagram!"])
 
 @tasks.loop(seconds=5)

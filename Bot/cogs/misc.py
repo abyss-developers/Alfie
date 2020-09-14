@@ -9,10 +9,17 @@ class misc(commands.Cog):
 
     # events
     @commands.Cog.listener()
-    async def on_member_join(self, member):
+    async def on_member_join(self, member : discord.Member):
         print("{} has joined the server.".format(member))
-        role = discord.utils.get(member.guild.roles, name="Newcomer")
-        await member.add_roles(role)
+        introduction_channel = self.client.get_channel(715985032099004521)
+        embed = discord.Embed(
+            title = "{} has joined the server!".format(member),
+            description = "Welcome to the server, {}! Please go and look over the rules at #rules. After you get verified, please head on over to #welcome-and-information to read on about the server, or #role-select to select your roles.".format(member),
+            colour = discord.Colour.blue()
+        )
+        embed.set_footer(text='Love from the AbyssDEV Team')
+        embed.set_thumbnail(url='https://media.discordapp.net/attachments/715985032359182422/716537624763826226/Server_Icon_Abyss.png?width=671&height=684')
+        await introduction_channel.send(embed=embed)
 
     @commands.Cog.listener()
     async def on_member_remove(self, member):
@@ -21,7 +28,7 @@ class misc(commands.Cog):
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
         message_id = payload.message_id
-        if message_id == 716717703003504650:
+        if message_id == 754909864584806511:
             guild_id = payload.guild_id
             guild = discord.utils.find(lambda g : g.id == guild_id, self.client.guilds)
             member = discord.utils.find(lambda m : m.id == payload.user_id, guild.members)
@@ -41,8 +48,12 @@ class misc(commands.Cog):
                 role = discord.utils.get(guild.roles, name='Green')
             if payload.emoji.name == '👥':
                 role = discord.utils.get(guild.roles, name='Teal')
+            if payload.emoji.name == '🍏':
+                role = discord.utils.get(guild.roles, name='Mint green')
             if payload.emoji.name == '🟦':
                 role = discord.utils.get(guild.roles, name='Light blue')
+            if payload.emoji.name == '🇦🇨':
+                role = discord.utils.get(guild.roles, name='Navy')
             if payload.emoji.name == '🍶':
                 role = discord.utils.get(guild.roles, name='Blue')
             if payload.emoji.name == '🟣':
@@ -51,19 +62,10 @@ class misc(commands.Cog):
                 role = discord.utils.get(guild.roles, name='Purple')
             if payload.emoji.name == '🐖':
                 role = discord.utils.get(guild.roles, name='Pink')
+            if payload.emoji.name == '💄':
+                role = discord.utils.get(guild.roles, name='Hot pink')
             await member.add_roles(role)
-        if message_id == 716717742799061065:
-            guild_id = payload.guild_id
-            guild = discord.utils.find(lambda g : g.id == guild_id, self.client.guilds)
-            member = discord.utils.find(lambda m : m.id == payload.user_id, guild.members)
-            if payload.emoji.name == '🖥️':
-                role = discord.utils.get(guild.roles, name='Programmer')
-            if payload.emoji.name == '📝':
-                role = discord.utils.get(guild.roles, name='Writer')
-            if payload.emoji.name == '🎨':
-                role = discord.utils.get(guild.roles, name='Artist')
-            await member.add_roles(role)
-        if message_id == 716717773656555520:
+        if message_id == 754911450274857002:
             guild_id = payload.guild_id
             guild = discord.utils.find(lambda g : g.id == guild_id, self.client.guilds)
             member = discord.utils.find(lambda m : m.id == payload.user_id, guild.members)
@@ -73,18 +75,23 @@ class misc(commands.Cog):
                 role = discord.utils.get(guild.roles, name='he/him/his')
             if payload.emoji.name == '🔴':
                 role = discord.utils.get(guild.roles, name='she/her/hers')
+            if payload.emoji.name == '☄️':
+                role = discord.utils.get(guild.roles, name='any pronouns')
             await member.add_roles(role)
-        if message_id == 716717899405983774:
+        if message_id == 754917774182055978:
             guild_id = payload.guild_id
             guild = discord.utils.find(lambda g : g.id == guild_id, self.client.guilds)
             member = discord.utils.find(lambda m : m.id == payload.user_id, guild.members)
-            if payload.emoji.name == '🔴':
-                role = discord.utils.get(guild.roles, name='Newcomer')
-                await member.remove_roles(role)
+            if payload.emoji.name == '📣':
+                role = discord.utils.get(guild.roles, name='Updates')
+            if payload.emoji.name == '📅':
+                role = discord.utils.get(guild.roles, name='Events')
+            await member.add_roles(role)
+
     @commands.Cog.listener()
     async def on_raw_reaction_remove(self, payload):
         message_id = payload.message_id
-        if message_id == 716717703003504650:
+        if message_id == 754909864584806511:
             guild_id = payload.guild_id
             guild = discord.utils.find(lambda g : g.id == guild_id, self.client.guilds)
             member = discord.utils.find(lambda m : m.id == payload.user_id, guild.members)
@@ -104,8 +111,12 @@ class misc(commands.Cog):
                 role = discord.utils.get(guild.roles, name='Green')
             if payload.emoji.name == '👥':
                 role = discord.utils.get(guild.roles, name='Teal')
+            if payload.emoji.name == '🍏':
+                role = discord.utils.get(guild.roles, name='Mint green')
             if payload.emoji.name == '🟦':
                 role = discord.utils.get(guild.roles, name='Light blue')
+            if payload.emoji.name == '🇦🇨':
+                role = discord.utils.get(guild.roles, name='Navy')
             if payload.emoji.name == '🍶':
                 role = discord.utils.get(guild.roles, name='Blue')
             if payload.emoji.name == '🟣':
@@ -114,19 +125,10 @@ class misc(commands.Cog):
                 role = discord.utils.get(guild.roles, name='Purple')
             if payload.emoji.name == '🐖':
                 role = discord.utils.get(guild.roles, name='Pink')
+            if payload.emoji.name == '💄':
+                role = discord.utils.get(guild.roles, name='Hot pink')
             await member.remove_roles(role)
-        if message_id == 716717742799061065:
-            guild_id = payload.guild_id
-            guild = discord.utils.find(lambda g : g.id == guild_id, self.client.guilds)
-            member = discord.utils.find(lambda m : m.id == payload.user_id, guild.members)
-            if payload.emoji.name == '🖥️':
-                role = discord.utils.get(guild.roles, name='Programmer')
-            if payload.emoji.name == '📝':
-                role = discord.utils.get(guild.roles, name='Writer')
-            if payload.emoji.name == '🎨':
-                role = discord.utils.get(guild.roles, name='Artist')
-            await member.remove_roles(role)
-        if message_id == 716717773656555520:
+        if message_id == 754911450274857002:
             guild_id = payload.guild_id
             guild = discord.utils.find(lambda g : g.id == guild_id, self.client.guilds)
             member = discord.utils.find(lambda m : m.id == payload.user_id, guild.members)
@@ -136,6 +138,17 @@ class misc(commands.Cog):
                 role = discord.utils.get(guild.roles, name='he/him/his')
             if payload.emoji.name == '🔴':
                 role = discord.utils.get(guild.roles, name='she/her/hers')
+            if payload.emoji.name == '☄️':
+                role = discord.utils.get(guild.roles, name='any pronouns')
+            await member.remove_roles(role)
+        if message_id == 754917774182055978:
+            guild_id = payload.guild_id
+            guild = discord.utils.find(lambda g : g.id == guild_id, self.client.guilds)
+            member = discord.utils.find(lambda m : m.id == payload.user_id, guild.members)
+            if payload.emoji.name == '📣':
+                role = discord.utils.get(guild.roles, name='Updates')
+            if payload.emoji.name == '📅':
+                role = discord.utils.get(guild.roles, name='Events')
             await member.remove_roles(role)
 
     # commands

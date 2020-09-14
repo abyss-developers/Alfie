@@ -24,11 +24,14 @@ class embeds(commands.Cog):
         embed.add_field(name=":leafy_green: Electric green", value="Use this emoji for electric green.")
         embed.add_field(name=":green_circle: Green", value="Use this emoji for green.")
         embed.add_field(name=":busts_in_silhouette: Teal", value="Use this emoji for teal.")
+        embed.add_field(name=":green_apple: Mint green", value="Use this emoji for mint green.")
         embed.add_field(name=":blue_square: Light blue", value="Use this emoji for light blue.")
         embed.add_field(name=":sake: Blue", value="Use this emoji for blue.")
+        embed.add_field(name=":flag_ac: Navy", value="Use this emoji for navy.")
         embed.add_field(name=":purple_circle: Light purple", value="Use this emoji for light purple.")
         embed.add_field(name=":grapes: Purple", value="Use this emoji for purple.")
         embed.add_field(name=":pig2: Pink", value="Use this emoji for pink.")
+        embed.add_field(name=":lipstick: Hot pink", value="Use this emoji for hot pink.")
 
         await ctx.channel.purge(limit=1)
         msg = await ctx.send(embed=embed)
@@ -40,11 +43,14 @@ class embeds(commands.Cog):
         await msg.add_reaction('🥬')
         await msg.add_reaction('🟢')
         await msg.add_reaction('👥')
+        await msg.add_reaction('🍏')
         await msg.add_reaction('🟦')
+        await msg.add_reaction('🇦🇨')
         await msg.add_reaction('🍶')
         await msg.add_reaction('🟣')
         await msg.add_reaction('🍇')
         await msg.add_reaction('🐖')
+        await msg.add_reaction('💄')
 
     @commands.command()
     @commands.has_role('Admin')
@@ -81,12 +87,33 @@ class embeds(commands.Cog):
         embed.add_field(name=":white_circle: they/them/theirs", value="Use this emoji for they/them/theirs.")
         embed.add_field(name=":blue_circle: he/him/his", value="Use this emoji for he/him/his.")
         embed.add_field(name=":red_circle: she/her/hers", value="Use this emoji for she/her/hers.")
+        embed.add_field(name=":comet: any pronouns", value="Use this emoji for any pronouns.")
 
         await ctx.channel.purge(limit=1)
         msg = await ctx.send(embed=embed)
         await msg.add_reaction('⚪')
         await msg.add_reaction('🔵')
         await msg.add_reaction('🔴')
+        await msg.add_reaction('☄️')
+    
+    @commands.command()
+    @commands.has_role('Admin')
+    async def updates(self, ctx):
+        embed = discord.Embed(
+            title = "Updates/events",
+            description = "Choose if you would like to be included in our updates/events @!",
+            colour = discord.Colour.blue()
+        )
+        embed.set_footer(text='Love from the AbyssDEV Team')
+        embed.set_thumbnail(url='https://media.discordapp.net/attachments/715985032359182422/716537624763826226/Server_Icon_Abyss.png?width=671&height=684')
+
+        embed.add_field(name=":mega: Updates", value="Use this emoji to be notified about server updates.")
+        embed.add_field(name=":calendar: Events", value="Use this emoji to be notified about server events.")
+
+        await ctx.channel.purge(limit=1)
+        msg = await ctx.send(embed=embed)
+        await msg.add_reaction('📣')
+        await msg.add_reaction('📅')
 
     @commands.command()
     async def rules(self, ctx, parameter=0):
